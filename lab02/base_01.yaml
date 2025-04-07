@@ -1,0 +1,374 @@
+openapi: 3.0.0
+info:
+  title: API de Sistema de Facturación y Stock
+  description: API para gestionar facturas, productos, clientes, proveedores, inventario y reportes.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/par2024
+
+paths:
+  /facturas:
+    get:
+      summary: Obtener todas las facturas
+      responses:
+        '200':
+          description: Lista de facturas obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Factura'
+    post:
+      summary: Crear una nueva factura
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Factura'
+      responses:
+        '201':
+          description: Factura creada exitosamente
+
+  /facturas/{id}:
+    get:
+      summary: Obtener una factura por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID único de la factura
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Factura obtenida correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Factura'
+        '404':
+          description: Factura no encontrada
+    put:
+      summary: Actualizar una factura existente por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Factura'
+      responses:
+        '200':
+          description: Factura actualizada correctamente
+    delete:
+      summary: Eliminar una factura por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Factura eliminada correctamente
+
+  /productos:
+    get:
+      summary: Obtener todos los productos en stock
+      responses:
+        '200':
+          description: Lista de productos obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Producto'
+    post:
+      summary: Crear un nuevo producto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+      responses:
+        '201':
+          description: Producto creado exitosamente
+
+  /productos/{id}:
+    get:
+      summary: Obtener un producto por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Producto obtenido correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+        '404':
+          description: Producto no encontrado
+    put:
+      summary: Actualizar un producto existente por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+      responses:
+        '200':
+          description: Producto actualizado correctamente
+    delete:
+      summary: Eliminar un producto por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Producto eliminado correctamente
+
+  /clientes:
+    get:
+      summary: Obtener todos los clientes registrados
+      responses:
+        '200':
+          description: Lista de clientes obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+    post:
+      summary: Crear un nuevo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '201':
+          description: Cliente creado exitosamente
+
+  /clientes/{id}:
+    get:
+      summary: Obtener un cliente por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cliente obtenido correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '404':
+          description: Cliente no encontrado
+    put:
+      summary: Actualizar un cliente por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '200':
+          description: Cliente actualizado correctamente
+    delete:
+      summary: Eliminar un cliente por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Cliente eliminado correctamente
+
+  /proveedores:
+    get:
+      summary: Obtener todos los proveedores registrados
+      responses:
+        '200':
+          description: Lista de proveedores obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proveedor'
+    post:
+      summary: Crear un nuevo proveedor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+      responses:
+        '201':
+          description: Proveedor creado exitosamente
+
+  /proveedores/{id}:
+    get:
+      summary: Obtener un proveedor por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Proveedor obtenido correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proveedor'
+        '404':
+          description: Proveedor no encontrado
+    put:
+      summary: Actualizar un proveedor por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Proveedor'
+      responses:
+        '200':
+          description: Proveedor actualizado correctamente
+    delete:
+      summary: Eliminar un proveedor por su ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Proveedor eliminado correctamente
+
+components:
+  schemas:
+    Factura:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la factura
+        numero:
+          type: string
+          description: Número de la factura
+        cliente:
+          type: string
+          description: Nombre del cliente
+        total:
+          type: number
+          format: double
+          description: Total de la factura
+      required:
+        - numero
+        - cliente
+        - total
+
+    Producto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del producto
+        nombre:
+          type: string
+          description: Nombre del producto
+        precio:
+          type: number
+          format: double
+          description: Precio del producto
+        descripcion:
+          type: string
+          description: Descripción del producto
+      required:
+        - nombre
+        - precio
+
+    Cliente:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del cliente
+        nombre:
+          type: string
+          description: Nombre del cliente
+        correo:
+          type: string
+          format: email
+          description: Correo electrónico del cliente
+      required:
+        - nombre
+        - correo
+
+    Proveedor:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del proveedor
+        nombre:
+          type: string
+          description: Nombre del proveedor
+        contacto:
+          type: string
+          description: Información de contacto del proveedor
+      required:
+        - nombre
+        - contacto
