@@ -1,0 +1,19 @@
+--1. La  vista TAB tiene todas las tablas que pertenecen al user (creadas por el usuario). Desde 
+--el plus ejecute el siguiente comando para ver las tablas creadas: 
+SELECT TNAME FROM TAB;
+
+--2. Verifique la estructura de todas las tablas con el comando DESCRIBE, o simplemente 
+--abreviando con DESC. 
+DESC B_RECIBO_DINERO;
+
+--3.  La cláusula “SELECT * FROM <tabla>” selecciona todas las columnas de una tabla. Aplique 
+--la selección de todas las columnas de la tabla B_CUENTAS. Grabe el script  con el nombre 
+--de EJE01. 
+SELECT * FROM B_RECIBO_DINERO
+
+--4. Como no todas las columnas caben en una línea, formatee la columna NOMBRE_CTA para 
+--reducir el tamaño de despliegue a 20 caracteres.
+
+COLUMN NOMBRE_CTA FORMAT A20
+SELECT * FROM B_CUENTAS;
+
